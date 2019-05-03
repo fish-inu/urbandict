@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getquery: function() {
-        axios.get(`http://api.urbandictionary.com/v0/define?term=${this.query}`)
+        axios.get(`${process.env.VUE_APP_URBAN}${this.query}`)
         .then((res) => {
           let res_body = res.data
           console.log(res_body.list)
