@@ -11,6 +11,15 @@
     <div class="card-body">
       <p class="card-title" id="7d48d815-d217-6500-faf0-32760cfa9ae6">{{item.definition}}</p>
       <p class="card-text">{{item.example}}</p>
+      <div class="footer">
+        <a :href="item.permalink" class="btn btn-outline-primary btn-sm" role='button'> 
+          <font-awesome-icon icon='external-link-alt'/> SOURCE
+        </a>
+        <div>
+          <span class='opinion'><font-awesome-icon icon='thumbs-up'/> : {{item.thumbs_up}}</span>
+          <span class='opinion'><font-awesome-icon icon='thumbs-down'/> : {{item.thumbs_down}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -74,5 +83,14 @@ width: calc(100% - 30px);
 border-radius: 5px;
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.opinion {
+  margin-left: 5px;
+}
 
 </style>
