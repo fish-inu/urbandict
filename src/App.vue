@@ -3,7 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to='/meaning'>Meaning</router-link>
+      <router-link to='/word/hello'>item_1</router-link> |
+      <router-link to='/word/wow'>item_2</router-link>
+
     </nav>
     <router-view/>
   </div>

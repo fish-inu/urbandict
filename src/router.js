@@ -5,15 +5,16 @@ import Def from '@/components/Def.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
-      path: '/meaning',
-      name: 'meaning',
+      path:'/word/:word',
+      name: 'def',
       component: Def
     },
     {

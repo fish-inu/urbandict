@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="../assets/urban_logo.png">
     <word-input @clickbtn='search_query'/>
     <def :ls='ls'/>
   </div>
@@ -35,7 +35,6 @@ export default {
         console.log(error)
       });
       }
-
   }
 }
 </script>
