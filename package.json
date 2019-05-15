@@ -16,6 +16,7 @@
     "core-js": "^2.6.5",
     "jquery": "^3.4.0",
     "popper.js": "^1.15.0",
+    "underscore": "^1.9.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },

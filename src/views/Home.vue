@@ -2,6 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/urban_logo.png">
     <word-input @clickbtn='search_query'/>
+    <nav-bar v-if="ls.length >= 1" @bynewest='sort_newest'/>
     <def :ls='ls'/>
   </div>
 </template>
@@ -10,13 +11,15 @@
 // @ is an alias to /src
 import WordInput from '@/components/WordInput.vue'
 import Def from '@/components/Def.vue'
+import NavBar from '@/components/nav.vue'
 import axios from 'axios'
-
+import _ from 'underscore'
 export default {
   name: 'home',
   components: {
     WordInput,
-    Def
+    Def,
+    NavBar
   },
   data() {
     return {
@@ -34,7 +37,13 @@ export default {
       .catch(function(error){
         console.log(error)
       });
-      }
+      },
+    sort_newest: function() {
+      this.ls = _.sortBy(this.ls, 'written_on').reverse()
+    }
   }
 }
 </script>
+
+<style scoped>
+</style>
