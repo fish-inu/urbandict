@@ -9,7 +9,7 @@ import { faThumbsUp, faThumbsDown, faExternalLinkAlt } from '@fortawesome/free-s
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faThumbsUp, faThumbsDown, faExternalLinkAlt)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('font-awesome-icon', FontAwesomeIcon)//global registration
 
 Vue.config.productionTip = false
 
