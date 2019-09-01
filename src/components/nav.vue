@@ -1,24 +1,30 @@
 <template>
+  <div>
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" @click="bynewest">/Newest/</a>
+      <a class="nav-link" @click="sort_newest" href='#'>Newest</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">/Thumbsup/</a>
+      <a class="nav-link" href="#">Thumbsup</a>
     </li>
   </ul>
+  </div>
 </template>
 
 <script>
 export default {
     name: 'NavBar',
     methods: {
-        bynewest: function() {
-            this.$emit('bynewest')
-        }
-    }
+      sort_newest: function() {
+        this.$store.commit('sort_newest')
+      }    
+      }
 }
 </script>
 
 <style>
+ul {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
 </style>

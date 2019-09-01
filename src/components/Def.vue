@@ -1,6 +1,6 @@
 <template>
 <div class='container'>
-  <div class="card border-primary" v-for="item in ls" :key="item.defid">
+  <div class="card border-primary" v-for="item in defs" :key="item.defid">
     <h5 class="card-header"> {{item.word}} | {{new Date(item.written_on).getFullYear() }}</h5>
     <div class="card-body">
       <p class="card-title" id="7d48d815-d217-6500-faf0-32760cfa9ae6">{{item.definition}}</p>
@@ -22,12 +22,12 @@
 <script>
 export default {
   name: 'Def',
-  props: ['ls'],
-  data() {
-    return {
-      query: ''
+  computed: {
+    defs() {
+      return this.$store.state.definitions
     }
-  },
+  }
+  ,
   beforeRouteUpdate (to, from, next) {
     console.log(to.params.word)
     next()
@@ -45,7 +45,7 @@ export default {
   text-align: left;
 }
 .card-body {
-    text-align:left;
+  text-align:left;
 }
 div .card {
 margin-top: 10px;

@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to='/word/hello'>item_1</router-link> |
-      <router-link to='/word/wow'>item_2</router-link>
-
+      <a class="navbar-brand" href="#">雨</a>
+      <ul class="navbar-nav">
+      <li class="nav-item "><router-link class='nav-link' to="/">Home</router-link></li>
+      <li class="nav-item "><router-link class='nav-link' to="/about">About</router-link></li> 
+      </ul>
     </nav>
     <router-view/>
   </div>
@@ -18,10 +18,4 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-a {
-  margin-left: 4px;
-  margin-right: 4px;
-  color: white
-}
-
 </style>

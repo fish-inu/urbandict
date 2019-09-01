@@ -13,11 +13,6 @@ export default new Router({
       component: Home,
     },
     {
-      path:'/word/:word',
-      name: 'def',
-      component: Def
-    },
-    {
       path: '/about',
       name: 'about',
       // route level code-splitting

@@ -8,8 +8,8 @@
         placeholder="Type whatever you want"
         v-model="query"
       >
-    <button type="submit" class="btn btn-primary" @click="passup_query"
->Search</button>
+      <button type="submit" class="btn btn-primary" @click="passup_query">Search
+      </button>
     </form>
   </div>
 </template>
@@ -23,12 +23,13 @@ export default {
   name: "WordInput",
   data() {
     return {
-      query: ""
-    };
+      query: ''
+    }
   },
   methods: {
     passup_query: function(e) {
-      this.$emit("clickbtn", this.query);
+      this.$store.state.query = this.query
+      this.$store.commit('search_word')
     }
   },
   mounted() {
@@ -70,8 +71,8 @@ export default {
       );
       //
       $('input').bind('typeahead:select', (ev, suggestion) => {
-        this.query=suggestion.term;
-        this.$emit("clickbtn", this.query);
+        this.$store.state.query=suggestion.term;
+        this.$store.commit('search_word')
 });
   }
 };
