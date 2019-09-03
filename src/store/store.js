@@ -23,7 +23,7 @@ export default new Vuex.Store(
                 },
         //
         sort_newest (state) {
-            state.definitions = _.sortBy(this.definitions, 'written_on').reverse()
+            state.definitions = _.sortBy(state.definitions, 'written_on').reverse()
         }
 
         }
