@@ -1,5 +1,5 @@
 <template>
-<div class='container'>
+<transition-group tag='div' class='container' name='fade'>
   <div class="card border-primary" v-for="item in defs" :key="item.defid">
     <h5 class="card-header"> {{item.word}} | {{new Date(item.written_on).getFullYear() }}</h5>
     <div class="card-body">
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-</div>
+</transition-group>
 </template>
 
 <script>
@@ -26,11 +26,12 @@ export default {
     defs() {
       return this.$store.state.definitions
     }
-  }
-  ,
-  beforeRouteUpdate (to, from, next) {
-    console.log(to.params.word)
-    next()
+  },
+  beforeRouteEnter (to, from, next) {
+  next(vm => {
+    vm.$store.state.query = to.params.word;
+    vm.$store.commit('search_word');
+  })
   }
 }
 </script>
@@ -71,5 +72,13 @@ box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
   margin-left: 5px;
 }
 
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 1.5s;
+}
 </style>
 

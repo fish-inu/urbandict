@@ -27,7 +27,8 @@ export default {
     }
   },
   methods: {
-    passup_query: function(e) {
+    passup_query: function() {
+      //传递的event参数删除后消除了首次搜索凭空刷新的bug
       this.$store.state.query = this.query
       this.$store.commit('search_word')
     }
