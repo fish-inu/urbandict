@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import UI from "@/components/UI.vue";
+import UI from "@/views/UI.vue";
 export default {
   components: {UI}
 }

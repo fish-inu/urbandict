@@ -8,8 +8,11 @@
         placeholder="Type whatever you want"
         v-model="query"
       >
-      <button type="submit" class="btn btn-primary" @click="passup_query">Search
-      </button>
+      <button type="submit" class="btn btn-primary" @click="passup_query">Search</button>
+      <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model='isDark' @change='dark'>
+          <label class="custom-control-label" for="customSwitch1">Light | Dark</label>
+      </div>
     </form>
   </div>
 </template>
@@ -23,7 +26,8 @@ export default {
   name: "WordInput",
   data() {
     return {
-      query: ''
+      query: '',
+      isDark: false
     }
   },
   methods: {
@@ -31,6 +35,29 @@ export default {
       //传递的event参数删除后消除了首次搜索凭空刷新的bug
       this.$store.state.query = this.query
       this.$store.commit('search_word')
+    },
+    dark: function() {
+      let cards = document.querySelectorAll('.card');
+      let nav_bar = document.querySelector('.navbar');
+      let body_tag = document.querySelector('body');
+      body_tag.classList.add('dark_mode');
+      if (this.isDark == true) {
+        cards.forEach( card => {
+            card.classList.add('text-white','bg-secondary');
+            card.classList.remove('border-primary'); }    
+      );
+        nav_bar.classList.replace('bg-primary', 'bg-dark')
+      
+      } 
+      else 
+      {
+        body_tag.classList.remove('dark_mode');
+        cards.forEach(card => {
+            card.classList.remove('text-white','bg-secondary');
+            card.classList.add('border-primary');
+        });
+        nav_bar.classList.replace('bg-dark', 'bg-primary')
+        }
     }
   },
   mounted() {
@@ -80,9 +107,17 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 #form {
   display: flex;
   justify-content: center;
+}
+
+.custom-control {
+  margin-left: 10px;
+}
+
+body.dark_mode{
+  background-color:  #2C3E50
 }
 </style>

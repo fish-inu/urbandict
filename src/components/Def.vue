@@ -6,7 +6,7 @@
       <p class="card-title" id="7d48d815-d217-6500-faf0-32760cfa9ae6">{{item.definition}}</p>
       <p class="card-text">{{item.example}}</p>
       <div class="footer">
-        <a :href="item.permalink" class="btn btn-outline-primary btn-sm" role='button'> 
+        <a :href="item.permalink" class="btn btn-primary btn-sm" role='button'> 
           <font-awesome-icon icon='external-link-alt'/> SOURCE
         </a>
         <div>
