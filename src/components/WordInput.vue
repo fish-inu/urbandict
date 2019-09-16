@@ -34,7 +34,7 @@ export default {
     passup_query: function() {
       //传递的event参数删除后消除了首次搜索凭空刷新的bug
       this.$store.state.query = this.query
-      this.$store.commit('search_word')
+      this.$store.dispatch('search_word')
     },
     dark: function() {
       let cards = document.querySelectorAll('.card');
@@ -100,7 +100,7 @@ export default {
       //
       $('input').bind('typeahead:select', (ev, suggestion) => {
         this.$store.state.query=suggestion.term;
-        this.$store.commit('search_word')
+        this.$store.dispatch('search_word');
 });
   }
 };

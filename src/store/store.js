@@ -10,22 +10,25 @@ export default new Vuex.Store(
             definitions: []
         },
         mutations: {
-        search_word (state) {
-            axios.get(`${process.env.VUE_APP_URBAN}${state.query}`)
-            .then((res) => {
-                let res_body = res.data
-                console.log(res_body.list)
-                state.definitions = res_body.list
-            })
-            .catch(function(error){
-                console.log(error)
-            });
-                },
-        //
-        sort_newest (state) {
-            state.definitions = _.sortBy(state.definitions, 'written_on').reverse()
+            sort_newest: (state) => {
+                state.definitions = _.sortBy(state.definitions, 'written_on').reverse()
+            },
+            set_definitions(state, payload) {
+                state.definitions = payload.definitions
+            }
+        },
+        actions: {
+            async search_word({ commit, state }) {
+                try {
+                    let res = await axios.get(`${process.env.VUE_APP_URBAN}${state.query}`);
+                    let definitons = res.data.list;
+                    commit('set_definitions', { definitions: definitons });
+                }
+                catch (e) {
+                    console.log('网络请求错误', e)
+                }
+            },
         }
 
-        }
     }
 )
