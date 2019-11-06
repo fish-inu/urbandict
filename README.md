@@ -1,6 +1,18 @@
 # dict_demo
 
+
+
+An alternative to official urban dictionary.
+
+Tech Stack:
+
+- Vue
+  - Vuex
+  - Vue-router
+- Bootstrap
+
 ## Project setup
+
 ```
 npm install
 ```
