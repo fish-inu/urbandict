@@ -15,7 +15,8 @@
 export default {
     name: 'NavBar',
     methods: {
-      sort_newest: function() {
+      sort_newest: function(e) {
+        e.preventDefault();
         this.$store.commit('sort_newest')
       }    
       }
