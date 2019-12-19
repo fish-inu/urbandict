@@ -31,8 +31,9 @@ export default {
     }
   },
   methods: {
-    passup_query: function() {
+    passup_query: function(e) {
       //传递的event参数删除后消除了首次搜索凭空刷新的bug
+      e.preventDefault();
       this.$store.state.query = this.query
       this.$store.dispatch('search_word')
     },
@@ -99,6 +100,7 @@ export default {
       );
       //
       $('input').bind('typeahead:select', (ev, suggestion) => {
+        ev.preventDefault();
         this.$store.state.query=suggestion.term;
         this.$store.dispatch('search_word');
 });
