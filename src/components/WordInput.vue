@@ -67,7 +67,7 @@ export default {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
           url:
-            "http://api.urbandictionary.com/v0/autocomplete-extra?key=ab71d33b15d36506acf1e379b0ed07ee&term=%query",
+            "https://api.urbandictionary.com/v0/autocomplete-extra?key=ab71d33b15d36506acf1e379b0ed07ee&term=%query",
           wildcard: "%query",
           transform: function(res) {
             return res.results;
