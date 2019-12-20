@@ -1,11 +1,12 @@
 <template>
   <div class="home">
-    <img
+    <div class="container d-flex justify-content-center my-3"><img
       src="@/assets/urban.svg"
       width="200"
       height="180"
       alt="Urban"
     />
+    </div>
     <word-input />
     <nav-bar v-if="this.$store.state.definitions.length >= 1" />
     <def />
@@ -28,7 +29,5 @@ export default {
 </script>
 
 <style scoped>
-img {
-  margin: 20px auto
-}
+
 </style>
