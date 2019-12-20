@@ -1,22 +1,28 @@
 <template>
   <transition-group tag="div" class="container" name="fade">
     <div class="card border-primary" v-for="item in defs" :key="item.defid">
-      <h5 class="card-header">{{item.word}} | {{new Date(item.written_on).getFullYear() }}</h5>
-      <div class="card-body">
-        <p class="card-title" id="7d48d815-d217-6500-faf0-32760cfa9ae6">{{item.definition}}</p>
-        <p class="card-text">{{item.example}}</p>
+      <h5 class="card-header">
+        {{ item.word }} | {{ new Date(item.written_on).getFullYear() }}
+      </h5>
+      <div class="card-body" @click="search_">
+        <p class="card-text" v-html="item.definition">
+          
+        </p>
+        <p class="card-text" v-html="item.example">
+          
+        </p>
         <div class="footer">
-          <a :href="item.permalink" class="btn btn-primary btn-sm" role="button">
+          <a :href="item.permalink" class="btn btn-link btn-sm" role="button">
             <font-awesome-icon icon="external-link-alt" />SOURCE
           </a>
           <div>
             <span class="opinion">
               <font-awesome-icon icon="thumbs-up" />
-              : {{item.thumbs_up}}
+              : {{ item.thumbs_up }}
             </span>
             <span class="opinion">
               <font-awesome-icon icon="thumbs-down" />
-              : {{item.thumbs_down}}
+              : {{ item.thumbs_down }}
             </span>
           </div>
         </div>
@@ -28,9 +34,32 @@
 <script>
 export default {
   name: "Def",
+  data() {
+    return {
+      colors: ["primary", "success", "danger", "info", "dark"]
+    };
+  },
   computed: {
     defs() {
-      return this.$store.state.definitions;
+      return this.$store.state.definitions.map(item => {
+        item.example = this.to_badge(item.example);
+        item.definition = this.to_badge(item.definition);
+        return item;
+      });
+    }
+  },
+  methods: {
+    to_badge: function(sent) {
+      return sent.replace(/\[[\w\s'"-]+?\]/g, s => {
+        let color = this.colors[Math.floor(Math.random() * this.colors.length)];
+        s = s.replace(/[\[\]]/g, "");
+        return `<h5 class="d-inline"><a href="#" class="badge badge-${color}">${s}</a></h5>`;
+      });
+    },
+    search_: function(e) {
+      e.preventDefault();
+      this.$store.state.query = e.target.text;
+      this.$store.dispatch("search_word");
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -67,7 +96,7 @@ div .card {
 div .card:hover {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px) scale(1.02);
-  transition: all 0.5s ease; 
+  transition: all 0.5s ease;
 }
 
 .footer {
@@ -90,4 +119,3 @@ div .card:hover {
   transition: all 1.5s;
 }
 </style>
-
