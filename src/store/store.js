@@ -13,6 +13,9 @@ export default new Vuex.Store(
             sort_newest: (state) => {
                 state.definitions = _.sortBy(state.definitions, 'written_on').reverse()
             },
+            sort_thumbup: (state) => {
+                state.definitions = _.sortBy(state.definitions, 'thumbs_up').reverse()
+            },
             set_definitions(state, payload) {
                 state.definitions = payload.definitions
             }

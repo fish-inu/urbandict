@@ -5,7 +5,7 @@
       <a class="nav-link" @click="sort_newest" href='#'>Newest</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Thumbsup</a>
+      <a class="nav-link" @click="sort_thumbup" href="#">Thumbsup</a>
     </li>
   </ul>
   </div>
@@ -18,7 +18,11 @@ export default {
       sort_newest: function(e) {
         e.preventDefault();
         this.$store.commit('sort_newest')
-      }    
+      },
+      sort_thumbup: function(e) {
+        e.preventDefault();
+        this.$store.commit('sort_thumbup')
+      }
       }
 }
 </script>

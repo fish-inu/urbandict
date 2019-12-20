@@ -9,7 +9,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Dark mode</li>
                 <li class="list-group-item">Sort by date</li>
-                <li class="list-group-item disabled">Sort by count</li>
+                <li class="list-group-item">Sort by count</li>
             </ul>
           </p>
           <a href="https://https://github.com/fish-inu/urbandict" class="card-link">View the source code</a>
