@@ -5,26 +5,22 @@
         {{ item.word }} | {{ new Date(item.written_on).getFullYear() }}
       </h5>
       <div class="card-body" @click="search_">
-        <p class="card-text" v-html="item.definition">
-          
-        </p>
-        <p class="card-text" v-html="item.example">
-          
-        </p>
-        <div class="footer">
-          <a :href="item.permalink" class="btn btn-link btn-sm" role="button">
-            <font-awesome-icon icon="external-link-alt" />SOURCE
-          </a>
-          <div>
-            <span class="opinion">
-              <font-awesome-icon icon="thumbs-up" />
-              : {{ item.thumbs_up }}
-            </span>
-            <span class="opinion">
-              <font-awesome-icon icon="thumbs-down" />
-              : {{ item.thumbs_down }}
-            </span>
-          </div>
+        <p class="card-text" v-html="to_badge(item.definition)"></p>
+        <p class="card-text" v-html="to_badge(item.example)"></p>
+      </div>
+      <div class="footer">
+        <a :href="item.permalink" class="btn btn-link btn-sm" role="button">
+          <font-awesome-icon icon="external-link-alt" />SOURCE
+        </a>
+        <div>
+          <span class="opinion">
+            <font-awesome-icon icon="thumbs-up" />
+            : {{ item.thumbs_up }}
+          </span>
+          <span class="opinion">
+            <font-awesome-icon icon="thumbs-down" />
+            : {{ item.thumbs_down }}
+          </span>
         </div>
       </div>
     </div>
@@ -41,11 +37,7 @@ export default {
   },
   computed: {
     defs() {
-      return this.$store.state.definitions.map(item => {
-        item.example = this.to_badge(item.example);
-        item.definition = this.to_badge(item.definition);
-        return item;
-      });
+      return this.$store.state.definitions;
     }
   },
   methods: {
@@ -58,8 +50,10 @@ export default {
     },
     search_: function(e) {
       e.preventDefault();
-      this.$store.state.query = e.target.text;
-      this.$store.dispatch("search_word");
+      if (e.target.text) {
+        this.$store.state.query = e.target.text;
+        this.$store.dispatch("search_word");
+      }
     }
   },
   beforeRouteEnter(to, from, next) {
