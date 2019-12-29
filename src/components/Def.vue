@@ -1,30 +1,39 @@
 <template>
-  <transition-group tag="div" class="container" name="fade">
-    <div class="card border-primary" v-for="item in defs" :key="item.defid">
-      <h5 class="card-header">
-        {{ item.word }} | {{ new Date(item.written_on).getFullYear() }}
-      </h5>
-      <div class="card-body" @click="search_">
-        <p class="card-text" v-html="to_badge(item.definition)"></p>
-        <p class="card-text" v-html="to_badge(item.example)"></p>
-      </div>
-      <div class="footer">
-        <a :href="item.permalink" class="btn btn-link btn-sm" role="button">
-          <font-awesome-icon icon="external-link-alt" />SOURCE
-        </a>
-        <div>
-          <span class="opinion">
-            <font-awesome-icon icon="thumbs-up" />
-            : {{ item.thumbs_up }}
-          </span>
-          <span class="opinion">
-            <font-awesome-icon icon="thumbs-down" />
-            : {{ item.thumbs_down }}
-          </span>
+  <div class="container">
+    <div
+      v-if="$store.state.loading"
+      class="spinner-border text-primary mx-auto"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+    <transition-group tag="div" class="container" name="fade">
+      <div class="card border-primary" v-for="item in defs" :key="item.defid">
+        <h5 class="card-header">
+          {{ item.word }} | {{ new Date(item.written_on).getFullYear() }}
+        </h5>
+        <div class="card-body" @click="search_">
+          <p class="card-text" v-html="to_badge(item.definition)"></p>
+          <p class="card-text" v-html="to_badge(item.example)"></p>
+        </div>
+        <div class="footer mx-2">
+          <a :href="item.permalink" class="btn btn-link btn-sm" role="button">
+            <font-awesome-icon icon="external-link-alt" />SOURCE
+          </a>
+          <div>
+            <span class="opinion">
+              <font-awesome-icon icon="thumbs-up" />
+              : {{ item.thumbs_up }}
+            </span>
+            <span class="opinion">
+              <font-awesome-icon icon="thumbs-down" />
+              : {{ item.thumbs_down }}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </transition-group>
+    </transition-group>
+  </div>
 </template>
 
 <script>
@@ -59,7 +68,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(vm => {
       vm.$store.state.query = to.params.word;
-      vm.$store.commit("search_word");
+      vm.$store.dispatch("search_word");
     });
   }
 };
