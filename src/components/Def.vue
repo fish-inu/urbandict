@@ -114,11 +114,11 @@ div .card:hover {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(50px);
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 1.5s;
+  transition: all 0.5s;
 }
 </style>
